@@ -1,0 +1,35 @@
+{
+  "name": "sport-edge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node --env-file=.env src/server.js",
+    "generate-db-types": "node src/scripts/generate-db-types.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhanraj-uchimahali/sport-edge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhanraj-uchimahali/sport-edge/issues"
+  },
+  "homepage": "https://github.com/dhanraj-uchimahali/sport-edge#readme",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "pg": "^8.21.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "yup": "^1.7.1"
+  }
+}
