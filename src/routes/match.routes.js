@@ -1,5 +1,11 @@
 import express from "express";
+import { validatorMiddleware } from "../middleware/validator.middleware.js";
+import { createMatchSchema } from "../schema/match.schema.js";
+import { create, fetchAll } from "../controllers/match.controller.js";
 
-const router = express.Router();
+const matchRouter = express.Router();
 
-export default router;
+matchRouter.post("/", validatorMiddleware({ body: createMatchSchema }), create);
+matchRouter.get("/", fetchAll);
+
+export default matchRouter;

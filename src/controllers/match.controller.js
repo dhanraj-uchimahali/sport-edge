@@ -1,5 +1,22 @@
 import matchService from "../services/match.service.js";
 
-const matchController = {};
+export const create = async (req, res, next) => {
+  try {
+    const matchData = req.body;
+    const createdMatch = await matchService.create(matchData);
+    return res.success(createdMatch, "Match created successfully", 201);
+  } catch (error) {
+    next(error);
+  }
+};
 
-export default matchController;
+export const fetchAll = async (req, res, next) => {
+  try {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const matches = await matchService.fetchAll(page, limit);
+    return res.success(matches, "Matches fetched successfully", 200);
+  } catch (error) {
+    next(error);
+  }
+};
