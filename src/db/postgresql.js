@@ -14,7 +14,7 @@ const sequelize = new Sequelize(db.database, db.user, db.password, {
     acquire: 30000,
     idle: 10000,
   },
-  // dialectOptions: { ssl: { require: true } },
+  dialectOptions: { ssl: { require: true } },
   retry: { max: 3 },
   logging: db.logging
 });
