@@ -1,11 +1,13 @@
 import db from "../models/index.js";
 import CustomError from "../utils/customError.js";
 import { getMatchStatus } from "../utils/helpers.js";
+import { eventBus } from '../events/eventBus.js';
 
 const matchService = {};
 
-matchService.create = async ({ sport, homeTeam, awayTeam, startTime, endTime }) => {
-  const createdMatch = await db.Match.create({
+matchService.create = async (req) => {
+  const { sport, homeTeam, awayTeam, startTime, endTime } = req.body;
+  const newMatch = await db.Match.create({
     sport,
     home_team: homeTeam,
     away_team: awayTeam,
@@ -13,6 +15,8 @@ matchService.create = async ({ sport, homeTeam, awayTeam, startTime, endTime }) 
     end_time: endTime,
     status: getMatchStatus(startTime, endTime),
   });
+
+  eventBus.emit('match:created', newMatch)
 };
 
 matchService.fetchAll = async (page = 1, limit = 10) => {

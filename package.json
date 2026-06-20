@@ -30,6 +30,7 @@
     "sequelize": "^6.37.8",
     "winston": "^3.19.0",
     "winston-daily-rotate-file": "^5.0.0",
+    "ws": "^8.21.0",
     "yup": "^1.7.1"
   }
 }

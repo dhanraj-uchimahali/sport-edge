@@ -5,7 +5,8 @@ import { create, fetchAll } from "../controllers/match.controller.js";
 
 const matchRouter = express.Router();
 
-matchRouter.post("/", validatorMiddleware({ body: createMatchSchema }), create);
 matchRouter.get("/", fetchAll);
+
+matchRouter.post("/", validatorMiddleware({ body: createMatchSchema }), create);
 
 export default matchRouter;

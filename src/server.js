@@ -1,14 +1,20 @@
+import http from 'http';
 import app from './app.js';
 import { logger } from './utils/logger.js';
 import { app as application } from './constants/config.js';
 import sequelize from './db/postgresql.js';
-
+import { attachWebsocketServer } from './ws/server.js';
 
 const PORT = application.port || 3000;
 
-const server = app.listen(PORT, () => {
+const httpServer = http.createServer(app);
+
+const server = httpServer.listen(PORT, () => {
   console.log(`Server is running at port: ${PORT}.`);
+  console.log(`Websocket server is running at port: ws://localhost:${PORT}/ws`)
 });
+
+attachWebsocketServer(server);
 
 const unexpectedErrorHandler = (error) => {
   logger.error(error);

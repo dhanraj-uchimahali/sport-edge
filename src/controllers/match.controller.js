@@ -2,8 +2,7 @@ import matchService from "../services/match.service.js";
 
 export const create = async (req, res, next) => {
   try {
-    const matchData = req.body;
-    const createdMatch = await matchService.create(matchData);
+    const createdMatch = await matchService.create(req);
     return res.success(createdMatch, "Match created successfully", 201);
   } catch (error) {
     next(error);
